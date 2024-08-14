@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Paper, TextField, Button, Typography, Checkbox, FormControlLabel, Link, Box, Card, CardContent, IconButton, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { Grid, TextField, Button, Typography,  Link,  Card, CardContent, IconButton, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +10,11 @@ export default function SignUpPage() {
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [nameError, setNameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+
+    const handleClickLoginPage = () => {
+        navigate('/Login');
+      }
+
     const [formData, setFromData] = useState({
         name:'',
         email:'',
@@ -73,6 +78,7 @@ export default function SignUpPage() {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
+                confirmPassword: formData.confirmPassword,
                 role:formData.role,
             });
             console.log(response.data)
@@ -87,6 +93,8 @@ export default function SignUpPage() {
             }
           }
      };
+
+    
 
   return (
             <Grid
@@ -230,7 +238,7 @@ export default function SignUpPage() {
                                 </form>
                                 <Typography variant="body2" align="center">
                                     Already have an account?{' '}
-                                    <Link href="#" variant="body2" style={{ color: '#0F67B1' }}>
+                                    <Link href="#" variant="body2" style={{ color: '#0F67B1' }}  onClick={handleClickLoginPage}>
                                         Login
                                     </Link>
                                 </Typography>
